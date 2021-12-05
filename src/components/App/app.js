@@ -6,6 +6,7 @@ import axios from "axios";
 // == Import : components
 import Header from "../Header/header";
 import Home from "../Home/home";
+import GoalDetails from "../GoalDetails/goalDetails";
 
 // == Import : local
 import { GoalsDataContext } from "../../context/goalsDataContext";
@@ -38,6 +39,7 @@ const App = () => {
             <main>
                 <Switch>
                     <Route path={"/"} component={Home} exact />
+                    <Route path={"/:goalname"} component={GoalDetails} exact />
                 </Switch>
             </main>
         </div>

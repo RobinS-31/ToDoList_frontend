@@ -1,5 +1,6 @@
 // == Import : npm
 import React from "react";
+import { Link } from "react-router-dom";
 
 // == Import : local
 import './goalItem.scss';
@@ -20,9 +21,15 @@ const GoalItem = ({ goalData, handleOnChangeInputCheckbox }) => (
                 onChange={() => handleOnChangeInputCheckbox(goalData.id, !goalData.active)}
             />
         </div>
-        <div className={"goalItem_titleContainer"}>
+        <Link
+            to={{
+                pathname: `/${goalData.title.replaceAll(" ", "-").normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase()}`,
+                state: { goalData }
+            }}
+            className={"goalItem_titleContainer"}
+        >
             <p className={'goalItem_titleContainer_title'}>{goalData.title}</p>
-        </div>
+        </Link>
     </li>
 );
 
