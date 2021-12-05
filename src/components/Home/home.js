@@ -22,7 +22,7 @@ import "./home.scss";
  */
 const Home = () => {
     const { goalsData, setGoalsData } = useContext(GoalsDataContext);
-    const [displaySpinnerLoader, setDisplaySpinnerLoader] = useState(true);
+    const [displaySpinnerLoader, setDisplaySpinnerLoader] = useState(false);
     const [goalsToDisplay, setGoalsToDisplay] = useState([]);
     const { isShowing, toggle } = useModal();
 
@@ -32,6 +32,8 @@ const Home = () => {
             const goalsInactiveSortByNewest = goalsData.filter(goal => !goal.active).sort((a, b) => b.id - a.id);
             setGoalsToDisplay([...goalsActiveSortByNewest, ...goalsInactiveSortByNewest]);
             setDisplaySpinnerLoader(false);
+        } else {
+            setDisplaySpinnerLoader(true);
         }
     }, [goalsData]);
 
@@ -52,6 +54,14 @@ const Home = () => {
         }
     };
 
+    const handleOnRemoveGoal = async (id) => {
+        const response = await axios.delete(`${process.env.REACT_APP_API_URL}api/goals/removegoal/${id}`);
+        if (response.status === 202) {
+            const { goalsList } = response.data;
+            setGoalsData(goalsList);
+        }
+    };
+
     return (
         <div className="home">
             <div className="home_header">
@@ -66,6 +76,7 @@ const Home = () => {
                     key={goal.id}
                     goalData={goal}
                     handleOnChangeInputCheckbox={handleOnChangeInputCheckbox}
+                    handleOnRemoveGoal={handleOnRemoveGoal}
                 />)}
             </ul>}
             {isShowing && <Modal hide={toggle} />}

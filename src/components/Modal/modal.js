@@ -2,6 +2,7 @@
 import { useState, useContext, useEffect } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // == Import : components
 import SpinnerLoader from "../SpinnerLoader/spinnerLoader";
@@ -85,11 +86,6 @@ const Modal = ({ hide }) => {
                                     value={title}
                                     onChange={e => setTitle(e.target.value)}
                                 />
-                                {displayErrorMessage &&
-                                    <div className={"modal_body_form_inputContainer_errorMessage"}>
-                                        {errorMessage}
-                                    </div>
-                                }
                             </div>
                             <div className={"modal_body_form_inputContainer"}>
                                 <label className={'notRequired'} htmlFor={"description"}>Description</label>
@@ -111,6 +107,11 @@ const Modal = ({ hide }) => {
                                     : "Valider"
                                 }
                             </button>
+                            {displayErrorMessage &&
+                                <div className={"modal_body_form_errorMessage"}>
+                                    {errorMessage}
+                                </div>
+                            }
                         </form>
                     </div>
                 </div>
@@ -118,6 +119,10 @@ const Modal = ({ hide }) => {
         </div>,
         document.body
     );
+};
+
+Modal.propTypes = {
+    hide: PropTypes.func
 };
 
 export default Modal;

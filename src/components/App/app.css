@@ -1,6 +1,7 @@
 .app {
   background-color: beige;
   width: 600px;
+  min-height: 600px;
   margin: 0 auto;
   padding: 2rem;
   border-radius: 5px;

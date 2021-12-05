@@ -1,3 +1,6 @@
+// == Import : package
+import PropTypes from 'prop-types';
+
 // == Import : local
 import './spinnerLoader.scss';
 
@@ -11,5 +14,9 @@ const SpinnerLoader = ({ classWidthAndHeight }) => (
         <div className={`loading_spinnerLoader ${classWidthAndHeight}`} />
     </div>
 );
+
+SpinnerLoader.propTypes = {
+    classWidthAndHeight: PropTypes.string
+};
 
 export default SpinnerLoader;

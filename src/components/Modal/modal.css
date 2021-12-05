@@ -44,6 +44,7 @@
   background: transparent;
   padding: 0.15rem 0.3rem;
   border-radius: 5px;
+  transition: box-shadow 0.15s ease-in-out;
 }
 .modalOverlay .modalWrapper .modal .modal_closeButton:hover {
   outline: none;
@@ -95,13 +96,6 @@
   font-size: 0.8rem;
   max-width: 100%;
 }
-.modalOverlay .modalWrapper .modal .modal_body_form .modal_body_form_inputContainer .modal_body_form_inputContainer_errorMessage {
-  background-color: #fb3;
-  padding: 1rem 1.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.8rem;
-  margin-top: 0.15rem;
-}
 .modalOverlay .modalWrapper .modal .modal_body_form .modal_body_form_inputContainer_submitButton {
   width: 150px;
   height: 40px;
@@ -121,6 +115,13 @@
 .modalOverlay .modalWrapper .modal .modal_body_form .modal_body_form_inputContainer_submitButton .modal_body_form_inputContainer_submitButton_spinnerLoader {
   width: 30px;
   height: 30px;
+}
+.modalOverlay .modalWrapper .modal .modal_body_form .modal_body_form_errorMessage {
+  background-color: #fb3;
+  padding: 1rem 1.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
 }
 
 /*# sourceMappingURL=modal.css.map */

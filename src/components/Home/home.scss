@@ -17,6 +17,7 @@
         width: 35px;
         height: 35px;
         background-color: transparent;
+        transition: box-shadow 0.15s ease-in-out;
 
         &:hover {
             outline: none;
