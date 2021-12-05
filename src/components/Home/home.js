@@ -1,13 +1,17 @@
 // == Import : package
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // == Import : components
 import GoalItem from "./GoalItem/goalItem";
 import SpinnerLoader from "../SpinnerLoader/spinnerLoader";
+import Modal from "../Modal/modal";
 
 // == Import : local
 import { GoalsDataContext } from "../../context/goalsDataContext";
+import useModal from "../../hooks/useModal";
 
 // == Import : style
 import "./home.scss";
@@ -20,6 +24,7 @@ const Home = () => {
     const { goalsData, setGoalsData } = useContext(GoalsDataContext);
     const [displaySpinnerLoader, setDisplaySpinnerLoader] = useState(true);
     const [goalsToDisplay, setGoalsToDisplay] = useState([]);
+    const { isShowing, toggle } = useModal();
 
     useEffect(() => {
         if (goalsData.length > 0) {
@@ -51,6 +56,9 @@ const Home = () => {
         <div className="home">
             <div className="home_header">
                 <h2 className="home_header_title">Mes Objectifs</h2>
+                <button className="home_header_addGoalButton" onClick={toggle}>
+                    <FontAwesomeIcon className="home_header_addGoalButton_icon" icon={faPlus} />
+                </button>
             </div>
             {displaySpinnerLoader && <SpinnerLoader classWidthAndHeight={"home_spinner-loader"} />}
             {!displaySpinnerLoader && <ul className="home_body">
@@ -60,6 +68,7 @@ const Home = () => {
                     handleOnChangeInputCheckbox={handleOnChangeInputCheckbox}
                 />)}
             </ul>}
+            {isShowing && <Modal hide={toggle} />}
         </div>
     );
 };
