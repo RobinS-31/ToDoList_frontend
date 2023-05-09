@@ -16,13 +16,13 @@ import './goalItem.scss';
  * @returns {JSX.Element}
  */
 const GoalItem = ({ goalData, handleOnChangeInputCheckbox, handleOnRemoveGoal }) => (
-    <li className={`goalItem ${!goalData.active ? 'done' : ''}`}>
+    <li className={`goalItem ${!goalData.checked ? 'done' : ''}`}>
         <div className={'goalItem_inputContainer'}>
             <input
                 className={'goalItem_inputContainer_checkbox'}
                 type={"checkbox"}
-                checked={!goalData.active}
-                onChange={() => handleOnChangeInputCheckbox(goalData.id, !goalData.active)}
+                checked={!goalData.checked}
+                onChange={() => handleOnChangeInputCheckbox(goalData.id, !goalData.checked)}
             />
         </div>
         <Link
@@ -30,11 +30,11 @@ const GoalItem = ({ goalData, handleOnChangeInputCheckbox, handleOnRemoveGoal })
                 pathname: `/${goalData.title.replaceAll(" ", "-").normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase()}`,
                 state: { goalData }
             }}
-            className={`goalItem_titleContainer ${!goalData.active ? 'done' : ''}`}
+            className={`goalItem_titleContainer ${!goalData.checked ? 'done' : ''}`}
         >
             <p className={'goalItem_titleContainer_title'}>{goalData.title}</p>
         </Link>
-        {!goalData.active &&
+        {!goalData.checked &&
             <button
                 className={'goalItem_removeButton'}
                 onClick={() => handleOnRemoveGoal(goalData.id)}

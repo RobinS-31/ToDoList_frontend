@@ -28,8 +28,8 @@ const Home = () => {
 
     useEffect(() => {
         if (goalsData.length > 0) {
-            const goalsActiveSortByNewest = goalsData.filter(goal => goal.active).sort((a, b) => b.id - a.id);
-            const goalsInactiveSortByNewest = goalsData.filter(goal => !goal.active).sort((a, b) => b.id - a.id);
+            const goalsActiveSortByNewest = goalsData.filter(goal => goal.checked).sort((a, b) => b.id - a.id);
+            const goalsInactiveSortByNewest = goalsData.filter(goal => !goal.checked).sort((a, b) => b.id - a.id);
             setGoalsToDisplay([...goalsActiveSortByNewest, ...goalsInactiveSortByNewest]);
             setDisplaySpinnerLoader(false);
         } else {
@@ -49,16 +49,14 @@ const Home = () => {
             }
         );
         if (response.status === 200) {
-            const { goalsList } = response.data;
-            setGoalsData(goalsList);
+            setGoalsData(response.data);
         }
     };
 
     const handleOnRemoveGoal = async (id) => {
         const response = await axios.delete(`${process.env.REACT_APP_API_URL}api/goals/removegoal/${id}`);
         if (response.status === 202) {
-            const { goalsList } = response.data;
-            setGoalsData(goalsList);
+            setGoalsData(response.data);
         }
     };
 

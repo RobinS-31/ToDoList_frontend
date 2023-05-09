@@ -1,7 +1,7 @@
 // == Import : package
 import React, { useEffect, useContext, useCallback } from "react";
 import { Switch, Route } from "react-router-dom";
-import axios from "axios";
+import { ClientApi } from "../../lib/clientApi.server.ts";
 
 // == Import : components
 import Header from "../Header/header";
@@ -19,10 +19,10 @@ const App = () => {
 
     const getGoalsList = useCallback(async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}api/goals/getgoals`);
+            const response = await ClientApi.get('/todo');
+            console.log('response :', response);
             if (response.status === 200) {
-                const { goalsList } = response.data;
-                setGoalsData(goalsList);
+                setGoalsData(response.data);
             }
         } catch (err) {
             console.log(err);

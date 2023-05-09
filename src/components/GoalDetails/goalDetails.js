@@ -32,8 +32,8 @@ const GoalDetails = () => {
                 <p>{goalData.description}</p>
             </div>
             <div className="goalDetails_footer">
-                <p>Ajouté le : <span>{dateFormatted}</span></p>
-                <p>Statut : <span>{goalData.active ? "En cours" : "Terminé"}</span></p>
+                <p>Ajouté le : <span>{goalData.updateDate}</span></p>
+                <p>Statut : <span>{goalData.checked ? "En cours" : "Terminé"}</span></p>
             </div>
         </div>
     );
